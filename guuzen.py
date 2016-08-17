@@ -5,7 +5,7 @@ import re
 import os
 if os.environ.get('CONSUMER_KEY'):
     import sys
-    sys.path.append('mecab-python-0.996')
+    sys.path.append('/app/mecab-python-0.996/')
 import MeCab
 
 
