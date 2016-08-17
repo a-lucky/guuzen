@@ -34,10 +34,10 @@ if __name__ == '__main__':
 
     import os
     if os.environ.get('CONSUMER_KEY'):
-        os.system('cd /app/mecab-python-0.996/')
-        if os.system('python setup.py build') != 0:
+        os.system('PATH=$PATH:/app/mecab-python-0.996')
+        if os.system('python /app/mecab-python-0.996/setup.py build') != 0:
             exit()
-        os.system('python setup.py install')
+        os.system('python /app/mecab-python-0.996/setup.py install')
 
     import fetch
 
