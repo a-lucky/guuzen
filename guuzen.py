@@ -12,8 +12,8 @@ def count_mora(word):
 
 
 def morphological_analysis(text):
-    mt = MeCab.Tagger("-d /usr/local/Cellar/mecab/0.996/lib/mecab/dic/mecab-ipadic-neologd")
-    # mt = MeCab.Tagger("mecabrc")
+    # mt = MeCab.Tagger("-d /usr/local/Cellar/mecab/0.996/lib/mecab/dic/mecab-ipadic-neologd")
+    mt = MeCab.Tagger("mecabrc")
     mecabnode = mt.parseToNode(text)
 
     morphs = []
