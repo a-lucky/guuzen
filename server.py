@@ -31,13 +31,15 @@ def guuzen_send():
     return r
 
 if __name__ == '__main__':
-    # ビルトインの開発用サーバーの起動
-    # ここでは、debugとreloaderを有効にしている
+    import os
+    os.system('python mecab-python-0.996 setup.py build')
+    os.system('python mecab-python-0.996 setup.py install')
+
     tweetGetter = fetch.TweetGetter()
     th_me = threading.Thread(target=tweetGetter.fetch_guuzen, name="th_me")
     th_me.start()
 
-    import os
+
     if os.environ.get('CONSUMER_KEY'):
         run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
     else:
