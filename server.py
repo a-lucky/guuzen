@@ -32,6 +32,14 @@ def guuzen_send():
 
 if __name__ == '__main__':
 
+    import os
+    if os.environ.get('CONSUMER_KEY'):
+        if os.system('python /app/mecab-python-0.996/setup.py build') != 0:
+            exit()
+        os.system('python /app/mecab-python-0.996/setup.py install')
+
+    import fetch
+
     tweetGetter = fetch.TweetGetter()
     th_me = threading.Thread(target=tweetGetter.fetch_guuzen, name="th_me")
     th_me.start()
