@@ -34,7 +34,6 @@ if __name__ == '__main__':
 
     import os
     if os.environ.get('CONSUMER_KEY'):
-        os.system('export PATH=$PATH:/app/mecab-python-0.996')
         if os.system('python /app/mecab-python-0.996/setup.py build') != 0:
             exit()
         os.system('python /app/mecab-python-0.996/setup.py install')

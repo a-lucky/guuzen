@@ -14,7 +14,7 @@ setup(name = "mecab-python",
 	py_modules=["MeCab"],
 	ext_modules = [
 		Extension("_MeCab",
-			["MeCab_wrap.cxx",],
+			["/app/mecab-python-0.996/MeCab_wrap.cxx",],
 			include_dirs=cmd2("/app/.linuxbrew/bin/mecab-config --inc-dir"),
 			library_dirs=cmd2("/app/.linuxbrew/bin/mecab-config --libs-only-L"),
 			libraries=cmd2("/app/.linuxbrew/bin/mecab-config --libs-only-l"))
