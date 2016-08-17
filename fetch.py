@@ -5,6 +5,7 @@ from requests_oauthlib import OAuth1Session
 from requests.exceptions import SSLError
 import json, datetime, time, pytz, re
 import csv
+import os
 
 
 def pp(obj):
@@ -19,10 +20,16 @@ class TweetGetter:
 
     def __init__(self):
         self.KEYS = {}
-        with open('key.csv', 'r') as f:
-            reader = csv.reader(f)
-            for row in reader:
-                self.KEYS[row[0]] = row[1]
+        if os.path.exists('key.csv'):
+            with open('key.csv', 'r') as f:
+                reader = csv.reader(f)
+                for row in reader:
+                    self.KEYS[row[0]] = row[1]
+        else:
+            self.KEYS['consumer_key'] = os.environ.get('CONSUMER_KEY')
+            self.KEYS['consumer_secret'] = os.environ.get('CONSUMER_SECRET')
+            self.KEYS['access_token'] = os.environ.get('ACCESS_TOKEN_KEY')
+            self.KEYS['access_secret'] = os.environ.get('ACCESS_TOKEN_SECRET')
 
         self.twitter = OAuth1Session(
             self.KEYS['consumer_key'],
