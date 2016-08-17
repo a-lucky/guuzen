@@ -2,7 +2,12 @@
 __author__ = 'masa'
 
 import re
+import os
+if os.environ.get('CONSUMER_KEY'):
+    import sys
+    sys.path.append('mecab-python-0.996')
 import MeCab
+
 
 def count_mora(word):
     word = word.decode("utf-8")

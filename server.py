@@ -4,6 +4,8 @@ from bottle import route, run, static_file, error, template, request, get, HTTPR
 import json
 import threading
 
+import fetch
+
 tweetGetter = None
 
 @route("/")
@@ -29,17 +31,12 @@ def guuzen_send():
     return r
 
 if __name__ == '__main__':
-    import os
-    if os.environ.get('CONSUMER_KEY'):
-        os.system('python mecab-python-0.996/setup.py build')
-        os.system('python mecab-python-0.996/setup.py install')
-    
-    import fetch
+
     tweetGetter = fetch.TweetGetter()
     th_me = threading.Thread(target=tweetGetter.fetch_guuzen, name="th_me")
     th_me.start()
 
-
+    import os
     if os.environ.get('CONSUMER_KEY'):
         run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
     else:
