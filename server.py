@@ -36,5 +36,10 @@ if __name__ == '__main__':
     tweetGetter = fetch.TweetGetter()
     th_me = threading.Thread(target=tweetGetter.fetch_guuzen, name="th_me")
     th_me.start()
-    run(host='localhost', port=8080, debug=True, reloader=False)
+
+    import os
+    if os.environ.get('CONSUMER_KEY'):
+        run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+    else:
+        run(host='localhost', port=8080, debug=True, reloader=False)
 
