@@ -38,6 +38,7 @@ if __name__ == '__main__':
             exit()
         os.system('python /app/mecab-python-0.996/setup.py install')
 
+    import MeCab
     import fetch
 
     tweetGetter = fetch.TweetGetter()
