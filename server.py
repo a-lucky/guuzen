@@ -40,7 +40,6 @@ if __name__ == '__main__':
         os.system('python setup.py install')
         os.chdir('/app')
 
-    import MeCab
     import fetch
 
     tweetGetter = fetch.TweetGetter()
