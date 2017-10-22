@@ -1,4 +1,4 @@
+heroku/ruby
 https://github.com/kennethreitz/conda-buildpack.git
-https://github.com/heroku/heroku-buildpack-ruby.git
 https://github.com/sunny4381/heroku-buildpack-linuxbrew.git
 
