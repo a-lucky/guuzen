@@ -4,9 +4,8 @@ from bottle import route, run, static_file, error, template, request, get, HTTPR
 import json
 import threading
 
-import fetch
-
 tweetGetter = None
+
 
 @route("/")
 def html_index():
@@ -25,10 +24,11 @@ def css_static(filename):
 
 @route('/guuzen.json')
 def guuzen_send():
-    body = json.dumps({'texts': tweetGetter.guuzen_list})
+    body = json.dumps({'lists': tweetGetter.guuzen_list})
     r = HTTPResponse(status=200, body=body)
     r.set_header('Content-Type', 'application/json')
     return r
+
 
 if __name__ == '__main__':
 

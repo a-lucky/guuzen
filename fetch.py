@@ -3,7 +3,11 @@
 import requests
 from requests_oauthlib import OAuth1Session
 from requests.exceptions import SSLError
-import json, datetime, time, pytz, re
+import json
+import datetime
+import time
+import pytz
+import re
 import csv
 import os
 
@@ -82,16 +86,24 @@ class TweetGetter:
                         # if num % 100 == 0:
                         #     print num
 
-                        find_list = senryu.find_dodoitsu(twt.encode('utf-8'))
+                        find_list = []
+                        # find_list.extend(senryu.find_dodoitsu(twt.encode('utf-8')))
                         find_list.extend(tanka.find_dodoitsu(twt.encode('utf-8')))
                         find_list.extend(dodoitsu.find_dodoitsu(twt.encode('utf-8')))
 
                         if len(find_list) != 0:
-                            self.guuzen_list.extend(find_list)
+                            self.guuzen_list.extend([{
+                                "text": find,
+                                "name": tweet['user']['screen_name'],
+                                "url": "https://twitter.com/" + tweet['user']['screen_name'] + "/status/" + tweet['id_str'],
+                                "img": tweet['user']['profile_image_url']
+                            } for find in find_list])
                             self.guuzen_list = self.guuzen_list[-min(10, len(self.guuzen_list)):]
                             for find in find_list:
                                 print '/'.join(find)
                             # print "↑", tweet['user']['name'], twt.encode('utf-8')
+                            # print tweet['user']['screen_name']
+                            # print tweet['id']
                 except requests.exceptions.ChunkedEncodingError:
                     print 'continue'
                     continue
